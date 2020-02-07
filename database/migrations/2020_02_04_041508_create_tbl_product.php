@@ -17,6 +17,7 @@ class CreateTblProduct extends Migration
             $table->increments('id');
             $table->string('name');
             $table->integer('quantity');
+            $table->string('attribute');
             $table->integer('category');
             $table->text('description');
             $table->float('price');

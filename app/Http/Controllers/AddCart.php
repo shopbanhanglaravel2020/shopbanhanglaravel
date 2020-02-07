@@ -103,12 +103,13 @@ class AddCart extends Controller
    			$customer['created_at'] = date("Y-m-d H:i:s");
         	DB::table('tbl_customer')->insert($customer);
         	$id_customer = DB::getPdo()->lastInsertId();
-        } else {
-   			$customer['updated_at'] = date("Y-m-d H:i:s");
-        	DB::table('tbl_customer')->where('id',$id_customer)->update($customer);
         }
+      //    else {
+   			// $customer['updated_at'] = date("Y-m-d H:i:s");
+      //   	DB::table('tbl_customer')->where('id',$id_customer)->update($customer);
+      //   }
         $data['customer_id'] = $id_customer;
-        $data['address'] = $request->cart_address;
+        $data['delivery_address'] = $request->cart_address;
         $data['payment_type'] = $order_payment_type;
         $data['status'] = '0';
         $data['total_price'] = $total_price_cart;

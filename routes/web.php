@@ -37,6 +37,9 @@ Route::post('/admin-cartaddproduct', 'AddCart@addCartAjax');
 Route::post('/admin-cartmakeorder', 'AddCart@MakeOrder');
 Route::post('/admin-cartcustomer', 'AddCart@getSearchCustomer');
 Route::post('/admin-cart_selectcustomer', 'AddCart@selectcustomer');
+// order
+Route::get('/admin-order', 'Order@index');
+Route::get('/admin-orderview/{id_order_select}', 'Order@selectOrder');
 // frontend
 Route::get('/', 'HomeController@index');
 

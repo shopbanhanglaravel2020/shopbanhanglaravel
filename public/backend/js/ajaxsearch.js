@@ -1,20 +1,47 @@
+function remove_li(count_li){
+  $(".li_att_list_"+count_li).remove();
+}
 window.onload = function () {
-
-   $('#search_product').keyup(function(){
-    var key_word = $(this).val();
-    if(key_word != '') {
-      var _token = $('input[name="_token"]').val(); 
-      $.ajax({
-        url: url_web+'/admin-searchproduct',
-        method:"POST",
-        data:{key_word:key_word, _token:_token},
-        success:function(data){ 
-          $('.result_search').fadeIn();  
-          $('.result_search').html(data); 
-        }
-      });
-     }
-   });
+  var count_li = 0;
+  $('#get_list_arrtibute').click(function(){
+    var list_attribute = '';
+    $('.li_att_list').each(function(){
+      // var att_name = $(this).find('span');
+      // att_name.each(function(){// id of ul
+        list_attribute += $(this).find('span').text();
+        list_attribute += ',';
+      // })
+    });
+    // console.log(list_attribute);
+    $('.div_list_attr').append('<input type="hidden" name="list_attribute" value="'+list_attribute+'">'); 
+    // return false;
+  });
+  $('#add_attribute').click(function(){
+    var att_name = $("#att_pro").val();
+    count_li += 1;
+    var html ='';
+    html += '<li class="li_att_list li_att_list_'+count_li+'"><span>'+att_name;
+    html += '</span><a href="#" style="    margin-left: 5px;color: red;font-weight: bold;" ';
+    html += 'onclick="remove_li('+count_li+')">x</a></li>';
+    $('.list_attribute').append(html); 
+    window.parent.$(".div_list_attr").css("display", "block");
+    $("#att_pro").val('');
+  });
+  $('#search_product').keyup(function(){
+  var key_word = $(this).val();
+  if(key_word != '') {
+    var _token = $('input[name="_token"]').val(); 
+    $.ajax({
+      url: url_web+'/admin-searchproduct',
+      method:"POST",
+      data:{key_word:key_word, _token:_token},
+      success:function(data){ 
+        $('.result_search').fadeIn();  
+        $('.result_search').html(data); 
+      }
+    });
+   }
+  });
   $(document).on('click', 'li', function(){  
     $('.result_search').val($(this).text());  
     $('.result_search').fadeOut();  

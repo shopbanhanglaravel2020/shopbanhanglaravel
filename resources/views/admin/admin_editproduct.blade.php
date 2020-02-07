@@ -2,9 +2,11 @@
 @section('editproduct')
 <form action="{{URL::to('/admin-updateproduct/'.$pro_edit->id)}}" method="post" enctype="multipart/form-data">
 	@csrf
-	<div class="row" style="padding: 0 5%;float: left;width: 50%">
+	<div class="row" style="padding: 0 5%;float: left;width: 50%;margin-top: 10px;">
 		<div class="form-group" style="float: left;width: 100%;">
-			<img src="{{URL::to('/public/uploads/product/'.$pro_edit->image)}}" alt="" height="150" width="300">
+			@foreach ($pro_edit->image as $list_img)
+				<img src="{{URL::to('/public/uploads/product/'.$list_img)}}" alt="" height="90" width="120" style="margin-right: 5px;">
+			@endforeach
 		</div>
 		<div class="form-group" style="float: left;width: 100%;">
 			<label style="float: left;width: 30%;">Product Image</label>
@@ -18,6 +20,15 @@
 		<div class="form-group" style="float: left;width: 100%;margin-top: 6px;">
 			<label style="float: left;width: 30%;">Quantity</label>
 			<input style="float: left;width: 60%;" class="form-control"  type="text" value="{{$pro_edit->quantity}}" name="product_qty"  onkeyup="this.value=this.value.replace(/[^\d]/,'')">
+		</div>
+		</br>
+		<div class="form-group" style="float: left;width: 100%;margin-top: 6px;">
+			<label style="float: left;width: 30%;">Attribute</label>
+			<select multiple="" style="float: left;width: 60%;" class="list_attr form-control">
+				@foreach ($pro_edit->attribute as $list_attr)
+					<option>{{$list_attr}}"</option>
+				@endforeach
+			</select>
 		</div>
 		</br>
 		<div class="form-group" style="float: left;width: 100%;margin-top: 6px;">

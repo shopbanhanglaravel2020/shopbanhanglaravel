@@ -20,6 +20,7 @@ class CreateTblProduct extends Migration
             $table->string('attribute');
             $table->integer('category');
             $table->text('description');
+            $table->string('status');
             $table->float('price');
             $table->string('image');
         });

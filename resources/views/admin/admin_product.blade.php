@@ -19,8 +19,8 @@ table, th, td {
 	</div>
 <br>
 <br>
-<div style="padding: 0 5%;margin-top: 30px;">
-    <table class="table table-bordered table-hover dataTable" role="grid" style="width:100%">
+<div class="box-body" style="padding: 0 5%;margin-top: 30px;">
+    <table class="table table-bordered table-hover dataTable" id="data" role="grid" style="width:100%">
     	<thead>
 			<tr role="row">
 				<th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="">Id</th>
@@ -43,12 +43,12 @@ table, th, td {
 					<td>{{$list_pro['pro_cate']}}</td>
 					<td>{{$list_pro['pro_price']}}$</td>
 					<td>
-						<a href="{{URL::to('/admin-editproduct/'.$list_pro['id'])}}" class="dropdown-toggle" data-toggle="dropdown">
+						<a href="{{URL::to('/admin-editproduct/'.$list_pro['id'])}}" class="">
 							<i class="fa fa-edit"></i>
 						</a>
 					</td>
 					<td>
-						<a href="{{URL::to('/admin-deleteproduct/'.$list_pro['id'])}}" onclick="return confirm('Are you sure to Delete?')" class="dropdown-toggle" data-toggle="dropdown">
+						<a href="{{URL::to('/admin-deleteproduct/'.$list_pro['id'])}}" onclick="return confirm('Are you sure to Delete?')" class="" >
 							<i class="fa fa-remove"></i>
 						</a>
 					</td>
@@ -56,6 +56,7 @@ table, th, td {
 			@endforeach
 		</tbody>
 	</table>
+	
 </div>
 <br>
 <br>
@@ -92,6 +93,15 @@ table, th, td {
 			<label style="float: left;width: 22%;">Price</label>
 			<input style="float: left;width: 60%;" class="form-control"  type="text" value="" name="product_price" onkeypress="return isNumberKey(event,this.id)" id="price_product">
 			$
+		</div>
+		</br>
+		<div class="form-group" style="float: left;width: 100%;margin-top: 6px;">
+			<label style="float: left;width: 22%;">Status</label>
+			<select style="float: left;width: 60%;" name="product_status" class="form-control" >
+				<option>Select Status</option>
+					<option value="new">New</option>
+					<option value="used">Used</option>
+			</select>
 		</div>
 		</br>
 		<div class="form-group" style="float: left;width: 100%;margin-top: 6px;">

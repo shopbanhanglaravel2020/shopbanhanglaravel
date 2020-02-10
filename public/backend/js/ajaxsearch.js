@@ -2,6 +2,10 @@ function remove_li(count_li){
   $(".li_att_list_"+count_li).remove();
 }
 window.onload = function () {
+  $('#color_picker').change(function(){
+      $('#name_color_picker').val(this.value); 
+      $('#attribute_color').val(this.value); 
+  });
   var count_li = 0;
   $('#get_list_arrtibute').click(function(){
     var list_attribute = '';
@@ -28,19 +32,19 @@ window.onload = function () {
     $("#att_pro").val('');
   });
   $('#search_product').keyup(function(){
-  var key_word = $(this).val();
-  if(key_word != '') {
-    var _token = $('input[name="_token"]').val(); 
-    $.ajax({
-      url: url_web+'/admin-searchproduct',
-      method:"POST",
-      data:{key_word:key_word, _token:_token},
-      success:function(data){ 
-        $('.result_search').fadeIn();  
-        $('.result_search').html(data); 
-      }
-    });
-   }
+    var key_word = $(this).val();
+    if(key_word != '') {
+      var _token = $('input[name="_token"]').val(); 
+      $.ajax({
+        url: url_web+'/admin-searchproduct',
+        method:"POST",
+        data:{key_word:key_word, _token:_token},
+        success:function(data){ 
+          $('.result_search').fadeIn();  
+          $('.result_search').html(data); 
+        }
+      });
+    }
   });
   $(document).on('click', 'li', function(){  
     $('.result_search').val($(this).text());  

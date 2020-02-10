@@ -28,9 +28,6 @@
   <!-- bootstrap wysihtml5 - text editor -->
   <link rel="stylesheet" href="{{asset('public/backend/css/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css')}}">
   <link rel="stylesheet" href="{{asset('public/backend/css/style.css')}}">
-  <!-- Daterange picker -->
-  <link rel="stylesheet" href="{{asset('public/backend/css/bower_components/datatables.net-bs/css/dataTables.bootstrap.css')}}">
-  <link rel="stylesheet" href="{{asset('public/backend/css/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css')}}">
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -340,42 +337,29 @@
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MAIN NAVIGATION</li>
-        <li class="active treeview">
+        <li class="treeview">
           <a href="#">
             <i class="fa fa-dashboard"></i> <span>Dashboard</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
-          <ul class="treeview-menu">
-            <li class="active"><a href="index.html"><i class="fa fa-circle-o"></i> Dashboard v1</a></li>
-            <li><a href="index2.html"><i class="fa fa-circle-o"></i> Dashboard v2</a></li>
-          </ul>
         </li>
         <li class="treeview">
-          <a href="{{URL::to('/admin-product')}}">
+          <a href="#">
             <i class="fa fa-files-o"></i>
-            <span>Product</span>
+            <span>Catalog</span>
             <span class="pull-right-container">
-              <span class="label label-primary pull-right">4</span>
+              <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="pages/layout/top-nav.html"><i class="fa fa-circle-o"></i> Top Navigation</a></li>
-            <li><a href="pages/layout/boxed.html"><i class="fa fa-circle-o"></i> Boxed</a></li>
-            <li><a href="pages/layout/fixed.html"><i class="fa fa-circle-o"></i> Fixed</a></li>
-            <li><a href="pages/layout/collapsed-sidebar.html"><i class="fa fa-circle-o"></i> Collapsed Sidebar</a></li>
+            <li><a href="{{URL::to('/admin-product')}}"><i class="fa fa-circle-o"></i>Product</a></li>
+            <li><a href="{{URL::to('/admin-attribute')}}"><i class="fa fa-circle-o"></i>Attribute</a></li>
+            <li><a href="{{URL::to('/admin-category')}}"><i class="fa fa-circle-o"></i>Category</a></li>
           </ul>
         </li>
-        <li>
-          <a href="{{URL::to('/admin-category')}}">
-            <i class="fa fa-th"></i> <span>Category</span>
-            <span class="pull-right-container">
-              <small class="label pull-right bg-green">new</small>
-            </span>
-          </a>
-        </li>
-        <li class="treeview">
+        <li class="">
           <a href="{{URL::to('/admin-cart')}}">
             <i class="fa fa-cart-plus"></i>
             <span>Cart</span>
@@ -390,7 +374,7 @@
             <li><a href="pages/charts/inline.html"><i class="fa fa-circle-o"></i> Inline charts</a></li>
           </ul>
         </li>
-        <li class="treeview">
+        <li class="">
           <a href="{{URL::to('/admin-order')}}">
             <i class="fa fa-laptop"></i>
             <span>Order</span>
@@ -398,16 +382,8 @@
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
-          <ul class="treeview-menu">
-            <li><a href="pages/UI/general.html"><i class="fa fa-circle-o"></i> General</a></li>
-            <li><a href="pages/UI/icons.html"><i class="fa fa-circle-o"></i> Icons</a></li>
-            <li><a href="pages/UI/buttons.html"><i class="fa fa-circle-o"></i> Buttons</a></li>
-            <li><a href="pages/UI/sliders.html"><i class="fa fa-circle-o"></i> Sliders</a></li>
-            <li><a href="pages/UI/timeline.html"><i class="fa fa-circle-o"></i> Timeline</a></li>
-            <li><a href="pages/UI/modals.html"><i class="fa fa-circle-o"></i> Modals</a></li>
-          </ul>
         </li>
-        
+      
       </ul>
     </section>
     <!-- /.sidebar -->
@@ -437,7 +413,6 @@
     @yield('editcategory')
     @yield('addcart')
     @yield('order')
-    @yield('order_view')
 
       <!-- /.row (main row) -->
 
@@ -647,20 +622,6 @@
   <div class="control-sidebar-bg"></div>
 </div>
 <!-- ./wrapper -->
-
-<!-- jQuery 3 -->
-<!-- <script src="{{asset('public/backend/bower_components/jquery/dist/jquery.min.js')}}"></script> -->
-<!-- jQuery UI 1.11.4 -->
-<!-- <script src="{{asset('public/backend/bower_components/jquery-ui/jquery-ui.min.js')}}"></script> -->
-<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-<script>
-  // $.widget.bridge('uibutton', $.ui.button);
-</script>
-
-<!-- AdminLTE for demo purposes -->
-<!-- <script src="{{asset('public/backend/js/dist/js/demo.js')}}"></script> -->
-<script src="{{asset('public/backend/js/ajaxsearch.js')}}"></script>
-<script src="{{asset('public/backend/js/myjavascript.js')}}"></script>
 <!-- jQuery 3 -->
 <script src="{{asset('public/backend/js/bower_components/jquery/dist/jquery.min.js')}}"></script>
 <!-- Bootstrap 3.3.7 -->
@@ -676,6 +637,11 @@
 <script src="{{asset('public/backend/js/dist/js/adminlte.min.js')}}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{asset('public/backend/js/dist/js/demo.js')}}"></script>
+
+<!-- AdminLTE for demo purposes -->
+<!-- <script src="{{asset('public/backend/js/dist/js/demo.js')}}"></script> -->
+<script src="{{asset('public/backend/js/myjavascript.js')}}"></script>
+<script src="{{asset('public/backend/js/ajaxsearch.js')}}"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>

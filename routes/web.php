@@ -40,6 +40,12 @@ Route::post('/admin-cart_selectcustomer', 'AddCart@selectcustomer');
 // order
 Route::get('/admin-order', 'Order@index');
 Route::get('/admin-orderview/{id_order_select}', 'Order@selectOrder');
+// attribute
+Route::get('/admin-attribute', 'Attribute@index');
+Route::post('/admin-addattribute', 'Attribute@addattribute');
+Route::get('/admin-value_attribute/{id_attribute}', 'Attribute@value_attribute');
+Route::post('/admin-addvalueaddtribute', 'Attribute@addvalueaddtribute');
+
 // frontend
 Route::get('/', 'HomeController@index');
 

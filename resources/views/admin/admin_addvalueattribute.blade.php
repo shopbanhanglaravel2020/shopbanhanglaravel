@@ -1,5 +1,8 @@
 @extends('admin_layout')
 @section('addcart')
+	@if(session('thongbao'))
+		<p> {{ session('thongbao') }} </p>
+	@endif
 	<div style="padding: 0 5%;margin-top: 30px;">
 	    <table style="width:100%">
 			<tr>
@@ -12,16 +15,16 @@
 			</tr>
 			@foreach ($list_value as $list_value)
 				<tr>
-					<th>{{$list_value['id']}}</th>
+					<th>{{$list_value->id}}</th>
 					@if ($is_color == 1)
-						<th>{{$list_value['value']}}</th>
-						<th>Color</th>
+						<th>{{$list_value->value}}</th>
+						<th><div style="border: 12px solid {{$list_value->color}};width: 50px;"></div></th>
 					@else
-						<th>{{$list_value['value']}}</th>
+						<th>{{$list_value->value}}</th>
 					@endif
 					<th>
-						<a href="{{URL::to('/admin-editvalue_attribute/'.$list_value['id'])}}" class="dropdown-toggle" data-toggle="dropdown">
-							<i class="fa fa-edit"></i>
+						<a href="{{URL::to('/admin-attvaluedelete/'.$list_value->id)}}" class="" >
+							<i class="fa fa-remove"></i>
 						</a>
 					</th>
 				</tr>
@@ -33,6 +36,7 @@
 	<br>
 	<form action="{{URL::to('/admin-addvalueaddtribute')}}" method="post">
 		@csrf
+		<input type="hidden" value="{{$id_attribute}}" name="id_attribute">
 		<div class="col-lg-4" style="padding: 0 5%;">
 			<div class="form-group">
 				<label>Value</label>
@@ -44,6 +48,8 @@
 					<input type="text" name="attribute_color" id="attribute_color" value="#ffffff">
 					<input type="color" id="color_picker" value="#ffffff">
 				</div>
+			@else
+				<input type="text" name="attribute_color" id="" value="">
 			@endif
 			<button type="submit" class="btn btn-block btn-primary" style="width: 38%;">Add Attribute</button>
 		</div>

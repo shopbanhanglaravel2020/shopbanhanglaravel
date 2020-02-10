@@ -32,19 +32,22 @@ class Attribute extends Controller
         $list_value = DB::select('select * from tbl_value_attribute where id_attribute = :id_attribute', ['id_attribute' => $id_attribute] );
         $is_color = DB::select('select * from tbl_attribute a inner join tbl_attribute_group b on a.id_attribute_group = b.id_attribute_group where a.id_attribute = :id_attribute', ['id_attribute' => $id_attribute] );
 
-        // echo'<pre>';print_r($is_color);
-        return view('admin.admin_addvalueattribute', ['admin_name' => 'Thai Thanh Tung', 'list_value' => $list_value, 'is_color' => $is_color[0]->is_color_group]);
+        // echo'<pre>';print_r($list_value);
+        return view('admin.admin_addvalueattribute', ['admin_name' => 'Thai Thanh Tung', 'list_value' => $list_value, 'is_color' => $is_color[0]->is_color_group, 'id_attribute' => $id_attribute]);
     }
     public function addvalueaddtribute(Request $request){
     	$attribute_value = $request->attribute_value;
     	$attribute_color = $request->attribute_color;
+    	$id_attribute = $request->id_attribute;
     	// echo'<pre>';print_r($category_name);
-    	DB::insert('insert into tbl_value_attribute (id_attribute, value, color) values (?, ?, ?)', [$attribute_group, $attribute_name, $public_name]);
-        return Redirect::to('admin-attribute');
+    	DB::insert('insert into tbl_value_attribute (id_attribute, value, color) values (?, ?, ?)', [$id_attribute, $attribute_value, $attribute_color]);
+        return Redirect::to('admin-value_attribute/'.$id_attribute);
     }
-    // public function deletecategory($id_cate_delete){
-    //     DB::table('tbl_category')->where('id',$id_cate_delete)->delete();
-    //     // echo'<pre>';print_r($cate_edit);
-    //     return Redirect::to('admin-category');
-    // }
+    public function attvaluedelete($id_value_attr){
+         DB::table('tbl_value_attribute')->where('id',$id_value_attr)->delete();
+        echo'<pre>';print_r($id_value_attr);
+        // echo'<pre>';print_r($id_attribute);
+        // return Redirect::to('admin-value_attribute');
+        return redirect()->back()->with('thongbao','Xoa thanh cong');
+    }
 }

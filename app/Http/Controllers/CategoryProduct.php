@@ -78,8 +78,9 @@ class CategoryProduct extends Controller
         $pro_edit = DB::select('select * from tbl_product where id = :id', ['id' => $id_product_select] );
         $pro_edit[0]->attribute = explode(",",$pro_edit[0]->attribute);
         $pro_edit[0]->image = explode(",",$pro_edit[0]->image);
-        // echo'<pre>';print_r($pro_edit);
-        return view('admin.admin_editproduct', ['admin_name' => 'Thai Thanh Tung', 'pro_edit' => $pro_edit[0], 'list_cate' => $list_cate]);
+        $att_name = DB::select('select * from tbl_attribute_group inner join tbl_attribute on tbl_attribute_group.id_attribute_group = tbl_attribute.id_attribute_group');
+        // echo'<pre>';print_r($att_name);
+        return view('admin.admin_editproduct', ['admin_name' => 'Thai Thanh Tung', 'pro_edit' => $pro_edit[0], 'list_cate' => $list_cate, 'att_name' => $att_name]);
     }
     public function updateproduct(Request $request,$product_update_id){
         $data = array();
@@ -115,6 +116,33 @@ class CategoryProduct extends Controller
                $output .= '<li><a href="admin-editproduct/'. $value->id .'">'.$value->name.'</a></li>';
             }
             $output .= '</ul>';
+            echo $output;
+       }
+    }
+    public function getValueAttribute(Request $request){
+        if($request->get('attr_id'))
+        {
+            $attr_id = $request->get('attr_id');
+            $data = DB::table('tbl_value_attribute')->where('id_attribute', '=', "{$attr_id}")->get();
+        // echo'<pre>';print_r($data);
+            $output = '<select class="selectpicker select_value_attr" onchange=" selectvalueattr()" style="">';
+            $output .= '<option value="#ffffff">Select Value Attribute</option>';
+            foreach($data as $value)
+            {
+                if (!empty($value->color)) {
+                    $output .= '<option style="text-transform:capitalize;background-color : '.$value->color.';';
+                    if ($value->color == '#ffffff') {
+                        $output .= 'color: #000;" ';
+                    } else {
+                        $output .= 'color: #fff;" ';
+                    }
+                    $output .= 'value="'.$value->color.'">'.$value->value.'</option>';
+                } else {
+                    $output .= '<option value="'.$value->id.'" style="text-transform:capitalize;">'.$value->value.'</option>';
+                }
+            }
+            $output .= '</select>';
+            $output .= '<input type="hidden" name="id_value_attr" value="'.$value->id.'">';
             echo $output;
        }
     }

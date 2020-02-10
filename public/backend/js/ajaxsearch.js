@@ -137,6 +137,31 @@ window.onload = function () {
       });
     }
   });
+
+  $('#select_attr_name').change(function(){
+    var attr_id = $(this).val();
+    if(attr_id != '') {
+      var _token = $('input[name="_token"]').val(); 
+      $.ajax({
+        url: url_web+'/admin-getvalueattribute',
+        method:"POST",
+        data:{attr_id:attr_id, _token:_token},
+        success:function(data){ 
+          $('.value_attribute').html(data);
+        }
+      });
+    }
+  });
+}
+function selectvalueattr(){
+  var attr_color_code = $('.select_value_attr').val();
+  console.log(attr_color_code);
+  window.parent.$(".select_value_attr").css("background-color", attr_color_code);
+  if (attr_color_code == "#ffffff") {
+   window.parent.$(".select_value_attr").css("color", "#000000");
+  } else {
+    window.parent.$(".select_value_attr").css("color", "#ffffff");
+  }
 }
 function delete_product(id_product){
   $("tr").remove(".check_exist_"+id_product);

@@ -30,6 +30,7 @@ Route::get('/admin-deleteproduct/{id_pro_select}', 'CategoryProduct@deleteproduc
 Route::post('/admin-updateproduct/{id_pro_select}', 'CategoryProduct@updateproduct');
 //ajax search product
 Route::post('/admin-searchproduct', 'CategoryProduct@getSearchAjax');
+Route::post('/admin-getvalueattribute', 'CategoryProduct@getValueAttribute');
 //cart
 Route::get('/admin-cart', 'AddCart@index');
 Route::post('/admin-cartsearchproduct', 'AddCart@getSearchAjax');
@@ -45,6 +46,7 @@ Route::get('/admin-attribute', 'Attribute@index');
 Route::post('/admin-addattribute', 'Attribute@addattribute');
 Route::get('/admin-value_attribute/{id_attribute}', 'Attribute@value_attribute');
 Route::post('/admin-addvalueaddtribute', 'Attribute@addvalueaddtribute');
+Route::get('/admin-attvaluedelete/{id_value_attr}', 'Attribute@attvaluedelete');
 
 // frontend
 Route::get('/', 'HomeController@index');

@@ -1,60 +1,37 @@
 @extends('admin_layout')
 @section('addcategory')
-
-<style>
-table, th, td {
-  border: 1px solid black;
-  text-align: center;
-}
-</style>
-	<div style="padding: 0 5%;margin-top: 30px;">
-	    <table style="width:100%">
-			<tr>
-				<th>id</th>
-				<th>Category Name</th>
-				<th>Description</th>
-				<th>Edit</th>
-				<th>Delete</th>
-			</tr>
-			@foreach ($list_cate as $list_cate)
-				<tr>
-					<th>{{$list_cate['id']}}</th>
-					<th>{{$list_cate['cate_name']}}</th>
-					<th>{{$list_cate['cate_desc']}}</th>
-					<th>
-						<a href="{{URL::to('/admin-editcategory/'.$list_cate['id'])}}" class="dropdown-toggle" data-toggle="dropdown">
-							<i class="fa fa-edit"></i>
-						</a>
-					</th>
-					<th>
-						<a href="{{URL::to('/admin-deletecategory/'.$list_cate['id'])}}" onclick="return confirm('Are you sure to Delete?')" class="dropdown-toggle" data-toggle="dropdown">
-							<i class="fa fa-remove"></i>
-						</a>
-						<!-- <a href="#" class="dropdown-toggle" id="delete_cate" data-toggle="dropdown">
-							<i class="fa fa-remove"></i>
-						</a> -->
-					</th>
-				</tr>
-			@endforeach
-		</table>
-	</div>
-	<br>
-	<br>
-	<br>
-	<form action="{{URL::to('/admin-addcategory')}}" method="post">
-		@csrf
-	<div class="row" style="padding: 0 5%;">
-	<label>Category Name</label>
-	<input type="text" value="" name="category_name">
-	<br>
-	<br>
-	<br>
-	<label>Descripion</label>
-	<textarea name="category_description" rows="2" cols="25" ></textarea>
-	<br>
-	<br>
-	<br>
-	<button type="submit" class="btn btn-block btn-primary" >Add Category</button>
-	</div>
-	</form>
+<table class="table table-striped table-dark" style="border:1px solid #D0D0D0;margin-left: 17px; margin-top: 10px">
+  <thead>
+    <tr>
+      <th scope="col" class="col-md-1">#</th>
+      <th scope="col" class="col-md-2">Name</th>
+      <th scope="col" class="col-md-4">Parent</th>
+      <th scope="col" class="col-md-4">Desc</th>
+	  <th scope="col" class="col-md-1"><a href="#" style="color:black"><i class="far fa-plus-square"></i></a></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>Mark</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+	  <td><a href="#" style="color:black"><i class="fas fa-edit" style="padding-right:15px"></i></a><a href="#" style="color:black"><i class="fas fa-trash-alt"></i></a></td>
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+      <td>Jacob</td>
+      <td>Thornton</td>
+      <td>@fat</td>
+	  <td><a href="#" style="color:black"><i class="fas fa-edit" style="padding-right:15px"></i></a><a href="#" style="color:black"><i class="fas fa-trash-alt"></i></a></td>
+    </tr>
+    <tr>
+      <th scope="row">3</th>
+      <td>Larry</td>
+      <td>the Bird</td>
+      <td>@twitter</td>
+	  <td><a href="#" style="color:black"><i class="fas fa-edit" style="padding-right:15px"></i></a><a href="#" style="color:black"><i class="fas fa-trash-alt"></i></a></td>
+    </tr>
+  </tbody>
+</table>
 @endsection

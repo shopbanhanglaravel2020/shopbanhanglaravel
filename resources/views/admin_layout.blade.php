@@ -14,6 +14,7 @@
   <link rel="stylesheet" href="{{asset('public/backend/css/bower_components/Ionicons/css/ionicons.min.css')}}">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{asset('public/backend/css/dist/css/AdminLTE.min.css')}}">
+  <script src="https://kit.fontawesome.com/cd35cd043d.js" crossorigin="anonymous"></script>
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="{{asset('public/backend/css/dist/css/skins/_all-skins.min.css')}}">
